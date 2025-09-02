@@ -24,7 +24,24 @@ public class Program2{
 		if (texture == "caked" && color == "brown" && has_particles == false && nicotineCount == 2){
                         return "UNKNOWN";
                 }
-
+                if (texture == "granular" && color == "gray" && has_particles == false && nicotineCount == 2){
+                        return "Lunkah";
+                }
+                if (texture == "flaky" && color == "gray" && has_particles == false && nicotineCount == 2){
+                        return "MecDuffy";
+                }
+                if ((texture == "caked" || texture == "flaky" || texture == "granular" || texture == "fluffy") && color == "brown" && nicotineCount == 2){
+                        return "Old Wood";
+                }
+                if (texture == "caked" && color == "gray" && has_particles == false && nicotineCount == 2){
+                        return "Top Hat";
+                }
+                if (texture == "flaky" && color == "dark" && has_particles == false && nicotineCount == 2){
+                        return "Trichinopoloy";
+                }
+                if (texture == "fluffy" && color == "pale" && has_particles == true && nicotineCount == 2){
+                        return "West Country";
+                }
 	return "INVALID_DATA";
 	}
 }
