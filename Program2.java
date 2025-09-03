@@ -50,11 +50,7 @@
 			System.out.println("The tobacco brand is: Trichinopoloy");	
 			return "Trichinopoloy";
 		}
-		if (texture == "fluffy" && color == "pale" && has_particles == true && nicotineCount == 2)
-		{
-			System.out.println("The tobacco brand is: Trichinopoloy");
-			return "Trichinopoloy";
-		}
+		
 		if (texture == "fluffy" && color == "pale" && has_particles == true && nicotineCount == 2)
 		{
 			System.out.println("The tobacco brand is: West Country");
@@ -63,3 +59,4 @@
 																	return "INVALID_DATA";
 																}
  }
+
