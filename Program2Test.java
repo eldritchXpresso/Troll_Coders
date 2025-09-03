@@ -37,7 +37,7 @@ public class Program2Test {
             System.out.println("MacDuffy (granular,gray,false,2) test failed.");
         }
 
-        if (program2.classifyTobaccoAsh("caked","brown",true,2).equals("Old Wood ")) {
+        if (program2.classifyTobaccoAsh("caked","brown",true,2).equals("Old Wood")) {
             System.out.println("Old Wood (caked,brown,true,2) test passed.");
         } else {
             System.out.println("Old Wood (caked,brown,true,2) test failed.");
