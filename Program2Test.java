@@ -38,9 +38,9 @@ public class Program2Test {
         }
 
         if (program2.classifyTobaccoAsh("caked","brown",true,2).equals("Old Wood ")) {
-            System.out.println("Old Wood (caked,brown,false,1) test passed.");
+            System.out.println("Old Wood (caked,brown,true,2) test passed.");
         } else {
-            System.out.println("Old Wood (caked,brown,false,2) test failed.");
+            System.out.println("Old Wood (caked,brown,true,2) test failed.");
         }
 
         if (program2.classifyTobaccoAsh("caked","gray",false,2).equals("Top Hat")) {
