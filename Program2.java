@@ -6,7 +6,7 @@
  *     * @author William Rauch, Jack Lilywhite, Scarlett Winter, Thomas Andersen
  *      */
 
- public class Program2
+public class Program2
 {
 	public String classifyTobaccoAsh( String texture, String color, boolean has_particles, int nicotineCount ) 
 	{
@@ -38,7 +38,7 @@
 		}
 															                if ((texture == "caked" || texture == "flaky" || texture == "granular" || texture == "fluffy") && color == "brown" && nicotineCount == 2)
 																	{
-			System.out.println("The tobacco brand is: Old Wood");									return "Old Wood";
+			System.out.println("The tobacco brand is: Old Wood");									return "Old Wood ";
 		}
 		if (texture == "caked" && color == "gray" && has_particles == false && nicotineCount == 2)
 		{
@@ -47,10 +47,14 @@
 		}
 		if (texture == "flaky" && color == "dark" && has_particles == false && nicotineCount == 2)
 		{
-			System.out.println("The tobacco brand is: Trichinopoloy");	
-			return "Trichinopoloy";
+			System.out.println("The tobacco brand is: Trichinopoly");	
+			return "Trichinopoly";
 		}
-		
+		if (texture == "fluffy" && color == "pale" && has_particles == true && nicotineCount == 2)
+		{
+			System.out.println("The tobacco brand is: Trichinopoly");
+			return "Trichinopoly";
+		}
 		if (texture == "fluffy" && color == "pale" && has_particles == true && nicotineCount == 2)
 		{
 			System.out.println("The tobacco brand is: West Country");
@@ -59,4 +63,3 @@
 																	return "INVALID_DATA";
 																}
  }
-
