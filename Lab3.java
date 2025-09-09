@@ -46,7 +46,7 @@ class Lab3{
 	}
 	public static void printLogs( int base, int maxArgument ){
 		System.out.println("Base Argument Exponent");
-		for(int i = 1; i <= maxArgument;multiply(i,2) ) {
+		for(int i = 1; i <= maxArgument; i = (int)multiply(i,2) ) {
 			System.out.printf("%4s %8s %5s%n", base, log(base,i), i);
 	}
 	}
