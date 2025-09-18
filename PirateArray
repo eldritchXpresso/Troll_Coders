@@ -1,3 +1,12 @@
+import java.util.Scanner;
+/**
+* Program Name: Program 4
+* Program Description: ?
+* Course: CS 1131
+* Lab Section L03
+* Lab Team Name: Troll Coders
+* @author Thomas Andersen, Scarlett Winter, William Rauch, Jack Lillywhite
+
 public class PirateDictionary {
     public static void main(String[] args) {
         String[][] dictionary = {
