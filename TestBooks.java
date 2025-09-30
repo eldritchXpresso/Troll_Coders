@@ -6,16 +6,19 @@ public class TestBooks
 		b = new RegularBooks();
 		b.bookType();
 		b.readType();
+		b.specificMethod();
 		((RegularBooks) b).bookType();
 
 		b = (Books) new eBooks();
 		b.bookType();
 		b.readType();
+		b.specificMethod();
 		((eBooks) b).bookType();
 
 		b = (Books) new AudioBook();
 		b.bookType();
 		b.readType();
+		b.specificMethod();
 		((AudioBook) b).bookType();
 	}
 }

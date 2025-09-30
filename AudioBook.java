@@ -9,4 +9,9 @@ public class AudioBook extends Books
 	{
 		System.out.println("Book can be read from audio file");
 	}
+
+	public void specificMethod()
+	{
+		System.out.println("Adjust volume?");
+	}
 }

@@ -9,4 +9,9 @@ public class Books
 	{
 		System.out.println("Book reads");
 	}
+
+	public void specificMethod()
+	{
+		System.out.println("Adjust specifics");
+	}
 }

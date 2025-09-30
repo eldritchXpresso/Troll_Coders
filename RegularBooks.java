@@ -9,4 +9,9 @@ public class RegularBooks extends Books
 	{
 		System.out.println("Book can be read on paper");
 	}
+
+	public void specificMethod()
+	{
+		System.out.println("Book paperback or hardcover?");
+	}
 }

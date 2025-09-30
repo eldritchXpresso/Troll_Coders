@@ -9,5 +9,10 @@ public class eBooks extends Books
 	{
 		System.out.println("Book can be read from PDF");
 	}
+
+	public void specificMethod()
+	{
+		System.out.println("What font would you like?");
+	}
 }
 
