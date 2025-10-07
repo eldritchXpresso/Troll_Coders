@@ -1,26 +1,34 @@
-import org.junit.Test;
-import static org.junit.Assert*;
+import org.junit.Test; 
+import static org.junit.Assert.*;
+
 public class MathLibraryTest {
 
-    @Test
-    public void roundToNearestInteger_PosDecimal() {
-        assertEquals(7, MathLibrary.roundToNearestInteger(6.9));
-    }
+	private static final double DELTA = 0.0001;
 
-    @Test
-    public void roundToNearestInteger_NegDecimal() {
-        assertEquals(-7, MathLibrary.roundToNearestInteger(-6.9));
-    }
+	@Test
+	public void testPositiveValue( ) {
+		assertEquals( 5.0, MathLibrary.absoluteValue( 5.0 ), DELTA );
+	}
 
-    @Test
-    public void roundToNearestInteger_Halves() {
-        assertEquals(7, MathLibrary.roundToNearestInteger(7.5));
-        assertEquals(-7, MathLibrary.roundToNearestInteger(-7.5));
-    }
+	@Test
+	public void testNegativeValue( ) {
+		// this test case specifies the behavior for a negative
+		// input. it should fail with the current implementation.
+		assertEquals( 10.0, MathLibrary.absoluteValue( -10.0 ),
+				DELTA );
+	}
 
-    @Test
-    public void roundToNearestInteger_Wholes() {
-        assertEquals(7, MathLibrary.roundToNearestInteger(7.0));
-        assertEquals(-7, MathLibrary.roundToNearestInteger(-7.0));
-    }
+	// add a test case for zero ( 0.0 ) here.
+	
+	// tests for MathLibrary.truncate( double x )
+	@Test
+	public void testTruncatePositiveValue( ) {
+		assertEquals( 4.0, MathLibrary.truncate( 4.99 ), DELTA );
+	}
+
+	@Test
+	public void testTruncateInvalidInput( ) {
+		assertThrows( IllegalArgumentException.class, 
+				MathLibrary.truncate( Double.NaN ), DELTA );
+	}
 }
