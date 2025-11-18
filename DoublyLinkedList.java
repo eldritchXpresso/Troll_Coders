@@ -4,31 +4,31 @@ public class DoublyLinkedList implements SimpleList {
 		Node next = null;
 		Node previous = null;
 
-		public Node ( Integer value ) {
+		public Node(Integer value) {
 			this.value = value;
 		}
 
-		public Integer getValue ( ) {
+		public Integer getValue() {
 			return value;
 		}
 
-		public void setValue ( Integer value ) {
+		public void setValue(Integer value) {
 			this.value = value;
 		}
 
-		public Node getNext ( ) {
+		public Node getNext() {
 			return next;
 		}
 
-		public void setNext ( Node next ) {
+		public void setNext(Node next) {
 			this.next = next;
 		}
 
-		public Node getPrevious ( ) {
+		public Node getPrevious() {
 			return previous;
 		}
 
-		public void setPrevious ( Node previous ) {
+		public void setPrevious(Node previous) {
 			this.previous = previous;
 		}
 	}
@@ -49,26 +49,35 @@ public class DoublyLinkedList implements SimpleList {
 	 * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
 	 */
 	@Override
-	public Integer remove ( int index ) throws IndexOutOfBoundsException {
-		if ( index < 0 || index >= size) {
-			throw new IndexOutOfBoundsException( "Index Out Of Bounds: " + index);
+	public Integer remove(int index) throws IndexOutOfBoundsException {
+		if (index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException("Index Out Of Bounds: " + index);
 		}
-		Node target = null;
-		Node currentNode = head;
+
+		Node target;
+
 		if (index == 0) {
-			for (int i = 0; i > size; i++) {
-				currentNode = currentNode.getNext();
-				
-			}
 			target = head;
-			head = head.getNext ();
+			head = head.getNext();
+			if (head != null) {
+				head.setPrevious(null);
+			} else {
+				tail = null;
+			}
 		} else {
-			for( int i = 1; i < index; i++) {
+			Node currentNode = head;
+			for (int i = 0; i < index - 1; i++) {
 				currentNode = currentNode.getNext();
 			}
 			target = currentNode.getNext();
-			currentNode.setNext(currentNode.getNext().getNext());
+			currentNode.setNext(target.getNext());
+			if (target.getNext() != null) {
+				target.getNext().setPrevious(currentNode);
+			} else {
+				tail = currentNode;
+			}
 		}
+
 		size--;
 		return target.getValue();
 	}
@@ -77,32 +86,32 @@ public class DoublyLinkedList implements SimpleList {
 	 * Print the values in the list in order from the front.
 	 * For example: [ 1, 2, 4, 8, 16 ]
 	 */
-	public void printList( ) {
-		System.out.println("[");
+	public void printList() {
+		System.out.print("[ ");
 		Node currentNode = head;
 
-		while( currentNode != null){
-			System.out.print(currentNode.getValue() + ", ");
+		while (currentNode != null) {
+			System.out.print(currentNode.getValue());
 			currentNode = currentNode.getNext();
+			if (currentNode != null) System.out.print(", ");
 		}
 
-		System.out.print("]");
+		System.out.println(" ]");
 	}
 
 	/**
 	 * prints the entire list starting from the tail of the list and working
 	 * backwards through the list by following the previouse node references.
 	 */
-	public void printReverse( ) 
-	{
-		System.out.println("[");
-		for(int i = size; i > 0; i--)
-		{
-			Node currentNode = tail;
-			System.out.print(currentNode + ", ");
+	public void printReverse() {
+		System.out.print("[ ");
+		Node currentNode = tail;
+		while (currentNode != null) {
+			System.out.print(currentNode.getValue());
 			currentNode = currentNode.getPrevious();
+			if (currentNode != null) System.out.print(", ");
 		}
-		System.out.print("]");
+		System.out.println(" ]");
 	}
 
 	/**
@@ -117,36 +126,51 @@ public class DoublyLinkedList implements SimpleList {
 	 * @throws IllegalArgumentException  - if the value specified is null
 	 */
 	@Override
-	public void add ( int index, Integer value )
-			  throws IndexOutOfBoundsException, IllegalArgumentException {
-		Node newNode = new Node( value );
-		if ( index == 0 ) {
+	public void add(int index, Integer value)
+			throws IndexOutOfBoundsException, IllegalArgumentException {
+		if (value == null) {
+			throw new IllegalArgumentException("Null values not allowed");
+		}
+		if (index < 0 || index > size) {
+			throw new IndexOutOfBoundsException("Index Out Of Bounds: " + index);
+		}
+
+		Node newNode = new Node(value);
+
+		if (index == 0) {
 			// add to front
-			newNode.setNext( head );
-			newNode.setPrevious( null );
-			head.setPrevious( newNode );
-			head = newNode;
-		} else if ( index == size ) {
-			// add to end
-			Node currentNode = head;
-			for( int i = 1; i <= index; i++ ) {
-				currentNode = currentNode.getNext( );
+			newNode.setNext(head);
+			newNode.setPrevious(null);
+			if (head != null) {
+				head.setPrevious(newNode);
 			}
-			newNode.setNext( null );
-			newNode.setPrevious( currentNode );
-			currentNode.getNext( ).setPrevious( currentNode );
-			currentNode.setNext( newNode );
+			head = newNode;
+			if (size == 0) {
+				tail = newNode;
+			}
+		} else if (index == size) {
+			// add to end
+			newNode.setNext(null);
+			newNode.setPrevious(tail);
+			if (tail != null) {
+				tail.setNext(newNode);
+			}
+			tail = newNode;
+			if (size == 0) {
+				head = newNode;
+			}
 		} else {
 			// add after node at index - 1
 			Node currentNode = head;
-			for( int i = 1; i < index; i++ ) {
-				currentNode = currentNode.getNext( );
+			for (int i = 0; i < index - 1; i++) {
+				currentNode = currentNode.getNext();
 			}
-			newNode.setNext( currentNode.getNext( ) );
-			newNode.setPrevious ( currentNode );
-			currentNode.getNext( ).setPrevious( currentNode );
-			currentNode.setNext( newNode );
+			newNode.setNext(currentNode.getNext());
+			newNode.setPrevious(currentNode);
+			currentNode.getNext().setPrevious(newNode);
+			currentNode.setNext(newNode);
 		}
+
 		size++;
 	}
 
@@ -157,27 +181,28 @@ public class DoublyLinkedList implements SimpleList {
 	 * @return the value at the specified position in this list or null if empty
 	 * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
 	 */
-	public Integer get ( int index ) throws IndexOutOfBoundsException {
+	@Override
+	public Integer get(int index) throws IndexOutOfBoundsException {
 		// validate index argument
-		if ( index < 0 || index >= size ) {
-			throw new IndexOutOfBoundsException( "Index Out Of Bounds: " + index );
+		if (index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException("Index Out Of Bounds: " + index);
 		}
 		// Check if list is empty
-		if ( isEmpty( ) ) {
+		if (isEmpty()) {
 			return null;
 		}
-		Node currentNode = find( index );
-		return currentNode.getValue( );
+		Node currentNode = find(index);
+		return currentNode.getValue();
 	}
 
-	private Node find( int index ) throws IndexOutOfBoundsException {
+	private Node find(int index) throws IndexOutOfBoundsException {
 		// validate index argument
-		if ( index < 0 || index >= size ) {
-			throw new IndexOutOfBoundsException( "Index Out Of Bounds: " + index );
+		if (index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException("Index Out Of Bounds: " + index);
 		}
 		Node currentNode = head;
-		for( int i = 0; i < index; i++ ) {
-			currentNode = currentNode.getNext( );
+		for (int i = 0; i < index; i++) {
+			currentNode = currentNode.getNext();
 		}
 		return currentNode;
 	}
@@ -188,7 +213,7 @@ public class DoublyLinkedList implements SimpleList {
 	 * @return true if this collection contains no elements
 	 */
 	@Override
-	public boolean isEmpty ( ) {
+	public boolean isEmpty() {
 		return size == 0;
 	}
 
@@ -199,7 +224,7 @@ public class DoublyLinkedList implements SimpleList {
 	 * @return the number of elements in this collection
 	 */
 	@Override
-	public int size ( ) {
+	public int size() {
 		return size;
 	}
 
@@ -208,11 +233,7 @@ public class DoublyLinkedList implements SimpleList {
 	 * @param index
 	 * @return the node at index
 	 */
-	public Node getNode( int index ) {
-		Node currentNode = head;
-		for( int i = 0; i < index; i++ ) {
-			currentNode = currentNode.getNext ();
-		}
-		return currentNode;
+	public Node getNode(int index) {
+		return find(index);
 	}
 }
